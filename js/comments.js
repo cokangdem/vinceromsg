@@ -1,4 +1,4 @@
-// Gestion des commentaires
+// js/comments.js
 class CommentManager {
     constructor() {
         this.comments = [];
@@ -29,65 +29,32 @@ class CommentManager {
         const commentData = { name, rating, text };
 
         try {
-            // Essayer d'envoyer au backend
-            await this.sendToBackend(commentData);
+            const response = await fetch(`${CONFIG.APPS_SCRIPT_URL}?action=addComment`, {
+                method: 'POST',
+                body: JSON.stringify(commentData)
+            });
+            
+            const result = await response.json();
+            alert(result.message);
+            
         } catch (error) {
-            // Fallback : stockage local
-            this.saveLocalComment(commentData);
+            alert('Erreur lors de l\'envoi du commentaire. Veuillez réessayer.');
+            console.error('Erreur:', error);
         }
 
         this.resetForm();
-        await this.loadComments();
-        alert('Merci pour votre commentaire !');
-    }
-
-    async sendToBackend(commentData) {
-        // À adapter selon votre solution backend
-        const response = await fetch(CONFIG.COMMENTS.apiUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(commentData)
-        });
-
-        if (!response.ok) {
-            throw new Error('Erreur backend');
-        }
-    }
-
-    saveLocalComment(commentData) {
-        const comments = this.getLocalComments();
-        comments.unshift({
-            id: Date.now(),
-            date: new Date().toISOString(),
-            ...commentData
-        });
-        localStorage.setItem('bioLinkComments', JSON.stringify(comments));
+        await this.loadComments(); // Recharger les commentaires
     }
 
     async loadComments() {
         try {
-            // Essayer de charger depuis le backend
-            this.comments = await this.loadFromBackend();
+            const response = await fetch(`${CONFIG.APPS_SCRIPT_URL}?action=getComments`);
+            this.comments = await response.json();
+            this.displayComments();
         } catch (error) {
-            // Fallback : charger depuis le local storage
-            this.comments = this.getLocalComments();
+            console.error('Erreur chargement comments:', error);
+            this.comments = [];
         }
-
-        this.displayComments();
-    }
-
-    async loadFromBackend() {
-        const response = await fetch(CONFIG.COMMENTS.apiUrl);
-        if (!response.ok) {
-            throw new Error('Erreur chargement');
-        }
-        return await response.json();
-    }
-
-    getLocalComments() {
-        return JSON.parse(localStorage.getItem('bioLinkComments') || '[]');
     }
 
     displayComments() {
@@ -132,10 +99,3 @@ class CommentManager {
         document.getElementById('comment-text').value = '';
     }
 }
-
-// Initialisation
-let commentManager;
-
-document.addEventListener('DOMContentLoaded', () => {
-    commentManager = new CommentManager();
-});

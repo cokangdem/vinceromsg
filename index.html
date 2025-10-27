@@ -3,40 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon Bio Link Personnel</title>
+    <title>Vncrmsg - Masseur Professionnel</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div class="container">
         <header>
             <img src="https://via.placeholder.com/120" alt="Avatar" class="avatar">
-            <h1 class="pseudo">Vincero</h1>
-            <h2 class="profession">Développeur Web Full Stack</h2>
-            <p class="bio">Passionné par le développement web depuis plus de 8 ans, je crée des solutions digitales innovantes et performantes pour mes clients. Spécialisé en React, Node.js et bases de données.</p>
+            <h1 class="pseudo">Chargement...</h1>
+            <h2 class="profession">Chargement...</h2>
+            <p class="bio">Chargement...</p>
         </header>
         
         <div class="stats-grid">
             <div class="stat-card">
-                <div class="stat-value">8+</div>
+                <div class="stat-value">0</div>
                 <div class="stat-label">Années d'expérience</div>
             </div>
             <div class="stat-card">
-                <div class="stat-value">4.9/5</div>
+                <div class="stat-value">0/5</div>
                 <div class="stat-label">Note moyenne</div>
             </div>
             <div class="stat-card">
-                <div class="stat-value">127</div>
-                <div class="stat-label">Projets réalisés</div>
+                <div class="stat-value">0</div>
+                <div class="stat-label">Clients satisfaits</div>
             </div>
             <div class="stat-card">
-                <div class="stat-value">42</div>
-                <div class="stat-label">Commentaires</div>
+                <div class="stat-value">0</div>
+                <div class="stat-label">Avis clients</div>
             </div>
         </div>
         
         <div class="distance-calculator">
             <h3 class="distance-title">Calculateur de distance</h3>
-            <p>Je suis situé à <strong>Paris, France</strong>. Calculez la distance entre votre ville et la mienne :</p>
+            <p>Je suis situé à <strong class="my-city">Paris, France</strong>. Calculez la distance :</p>
             <div class="distance-form">
                 <input type="text" class="distance-input" id="user-city" placeholder="Entrez votre ville">
                 <button class="distance-btn" id="calculate-distance">Calculer</button>
@@ -57,7 +57,7 @@
         </div>
         
         <div class="comments-section">
-            <h3 class="comments-title">Commentaires (42)</h3>
+            <h3 class="comments-title">Commentaires (<span id="comments-count">0</span>)</h3>
             
             <div class="comment-form">
                 <div class="form-group">
@@ -74,22 +74,17 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <textarea class="form-textarea" id="comment-text" placeholder="Votre commentaire"></textarea>
+                    <textarea class="form-textarea" id="comment-text" placeholder="Votre avis..."></textarea>
                 </div>
-                <button class="submit-btn" id="submit-comment">Publier le commentaire</button>
+                <button class="submit-btn" id="submit-comment">Publier l'avis</button>
             </div>
             
             <div class="comments-list" id="comments-list">
-                <!-- Les commentaires seront ajoutés ici dynamiquement -->
+                <!-- Les commentaires seront chargés ici -->
             </div>
         </div>
-        
-        <footer>
-            <p>© 2023 Vincero - Tous droits réservés</p>
-        </footer>
     </div>
 
-    <!-- Appel des scripts -->
     <script src="js/config.js"></script>
     <script src="js/comments.js"></script>
     <script src="js/main.js"></script>

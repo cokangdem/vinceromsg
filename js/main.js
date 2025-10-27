@@ -1,8 +1,8 @@
 // js/main.js
 class BioLinkApp {
     constructor() {
-        this.config = {};
-        this.stats = {};
+        this.userData = {};
+        this.statsData = {};
         this.init();
     }
 
@@ -11,11 +11,11 @@ class BioLinkApp {
         await this.trackVisitor();
         
         // Puis charger les données
-        await this.loadConfig();
+        await this.loadUserData();
         await this.loadStats();
         this.setupUI();
-        this.setupEventListeners();
         
+        // Initialiser les commentaires
         window.commentManager = new CommentManager();
     }
 
@@ -27,77 +27,90 @@ class BioLinkApp {
         }
     }
 
-    async loadConfig() {
+    async loadUserData() {
         try {
             const response = await fetch(`${CONFIG.APPS_SCRIPT_URL}?action=getConfig`);
-            this.config = await response.json();
+            this.userData = await response.json();
             this.updateUserInfo();
         } catch (error) {
             console.error('Erreur chargement config:', error);
+            // Fallback avec des données basiques
+            this.userData = {
+                pseudo: "Vncrmsg",
+                profession: "Masseur Professionnel",
+                city: "Paris, France",
+                bio: "Passionné par le bien-être et la relaxation...",
+                phoneFormatted: "+33 6 38 20 23 99",
+                email: "votre@email.com"
+            };
+            this.updateUserInfo();
         }
     }
 
     async loadStats() {
         try {
             const response = await fetch(`${CONFIG.APPS_SCRIPT_URL}?action=getStats`);
-            this.stats = await response.json();
+            this.statsData = await response.json();
             this.updateStats();
         } catch (error) {
             console.error('Erreur chargement stats:', error);
+            // Fallback
+            this.statsData = {
+                experience: "4+",
+                avg_rating: "4.8",
+                clients_served: "0",
+                total_comments: "0"
+            };
+            this.updateStats();
         }
     }
 
     updateUserInfo() {
-        document.querySelector('.pseudo').textContent = this.config.pseudo || 'Vncrmsg';
-        document.querySelector('.profession').textContent = this.config.profession || 'Masseur Professionnel';
+        // Avatar
+        const avatar = document.querySelector('.avatar');
+        if (avatar && this.userData.avatar) {
+            avatar.src = this.userData.avatar;
+        }
         
-        // Bio et spécialités
+        // Informations personnelles
+        document.querySelector('.pseudo').textContent = this.userData.pseudo || "Vncrmsg";
+        document.querySelector('.profession').textContent = this.userData.profession || "Masseur Professionnel";
+        
+        // Bio
         const bioElement = document.querySelector('.bio');
-        if (bioElement && this.config.bio) {
-            bioElement.textContent = this.config.bio;
+        if (bioElement) {
+            bioElement.textContent = this.userData.bio || "Spécialiste en massage bien-être et relaxation.";
         }
         
         // Ville pour le calculateur de distance
-        const cityElement = document.querySelector('.distance-calculator strong');
-        if (cityElement && this.config.city) {
-            cityElement.textContent = this.config.city;
+        const cityElement = document.querySelector('.my-city');
+        if (cityElement) {
+            cityElement.textContent = this.userData.city || "Paris, France";
         }
     }
 
     updateStats() {
         const statCards = document.querySelectorAll('.stat-card');
         
-        // Expérience
         if (statCards[0]) {
-            statCards[0].querySelector('.stat-value').textContent = 
-                this.stats.experience || '4+';
-            statCards[0].querySelector('.stat-label').textContent = 
-                'Années d\'expérience';
+            statCards[0].querySelector('.stat-value').textContent = this.statsData.experience || "4+";
+            statCards[0].querySelector('.stat-label').textContent = "Années d'expérience";
         }
         
-        // Note moyenne
         if (statCards[1]) {
-            const rating = this.stats.avg_rating || '0';
-            statCards[1].querySelector('.stat-value').textContent = 
-                `${rating}/5`;
-            statCards[1].querySelector('.stat-label').textContent = 
-                'Note moyenne';
+            const rating = this.statsData.avg_rating || "4.8";
+            statCards[1].querySelector('.stat-value').textContent = `${rating}/5`;
+            statCards[1].querySelector('.stat-label').textContent = "Note moyenne";
         }
         
-        // Clients servis (visiteurs 30 derniers jours)
         if (statCards[2]) {
-            statCards[2].querySelector('.stat-value').textContent = 
-                this.stats.clients_served || '0';
-            statCards[2].querySelector('.stat-label').textContent = 
-                'Clients satisfaits';
+            statCards[2].querySelector('.stat-value').textContent = this.statsData.clients_served || "0";
+            statCards[2].querySelector('.stat-label').textContent = "Clients satisfaits";
         }
         
-        // Avis clients
         if (statCards[3]) {
-            statCards[3].querySelector('.stat-value').textContent = 
-                this.stats.total_comments || '0';
-            statCards[3].querySelector('.stat-label').textContent = 
-                'Avis clients';
+            statCards[3].querySelector('.stat-value').textContent = this.statsData.total_comments || "0";
+            statCards[3].querySelector('.stat-label').textContent = "Avis clients";
         }
     }
 
@@ -119,15 +132,16 @@ class BioLinkApp {
 
     revealContact(type) {
         const button = document.getElementById(`show-${type}`);
-        let value;
+        let value, icon;
         
         if (type === 'phone') {
-            value = this.config.phoneFormatted || 'Non disponible';
+            value = this.userData.phoneFormatted || this.userData.phone || "Non disponible";
+            icon = '📱';
         } else {
-            value = this.config.email || 'Non disponible';
+            value = this.userData.email || "Non disponible";
+            icon = '✉️';
         }
         
-        const icon = type === 'phone' ? '📱' : '✉️';
         button.innerHTML = `${icon} ${value}`;
         button.style.backgroundColor = '#28a745';
     }
@@ -135,7 +149,7 @@ class BioLinkApp {
     calculateDistance() {
         const userCity = document.getElementById('user-city').value.trim();
         const resultDiv = document.getElementById('distance-result');
-        const myCity = this.config.city || 'Paris';
+        const myCity = this.userData.city || "Paris";
         
         if (!userCity) {
             resultDiv.textContent = 'Veuillez entrer une ville';
@@ -143,20 +157,21 @@ class BioLinkApp {
             return;
         }
         
-        // Simulation réaliste pour un masseur (rayon d'action)
+        // Simulation réaliste
         const distances = {
             'paris': '0 km (sur place)',
             'lyon': '~400 km (déplacement possible)',
             'marseille': '~700 km (déplacement possible)',
             'bordeaux': '~500 km (déplacement possible)',
-            'lille': '~200 km (déplacement possible)'
+            'lille': '~200 km (déplacement possible)',
+            'toulouse': '~600 km (déplacement possible)'
         };
         
         const normalizedCity = userCity.toLowerCase();
         if (distances[normalizedCity]) {
-            resultDiv.textContent = `Distance ${myCity}-${userCity} : ${distances[normalizedCity]}`;
+            resultDiv.textContent = `Distance ${myCity} - ${userCity} : ${distances[normalizedCity]}`;
         } else {
-            resultDiv.textContent = `Déplacement possible jusqu'à ${userCity} (me consulter)`;
+            resultDiv.textContent = `Déplacement possible jusqu'à ${userCity} (me consulter pour les tarifs)`;
         }
         resultDiv.style.color = '#28a745';
     }
