@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Bio Link Personnel</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Votre contenu HTML ici (sans les styles et scripts) -->
+        
+        <div class="comments-section">
+            <h3 class="comments-title">Commentaires (<span id="comments-count">0</span>)</h3>
+            
+            <div class="comment-form">
+                <div class="form-group">
+                    <input type="text" class="form-input" id="comment-name" placeholder="Votre nom">
+                </div>
+                <div class="form-group">
+                    <select class="form-input" id="comment-rating">
+                        <option value="">Note (optionnelle)</option>
+                        <option value="5">★★★★★ Excellent</option>
+                        <option value="4">★★★★ Très bon</option>
+                        <option value="3">★★★ Bon</option>
+                        <option value="2">★★ Moyen</option>
+                        <option value="1">★ Faible</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <textarea class="form-textarea" id="comment-text" placeholder="Votre commentaire"></textarea>
+                </div>
+                <button class="submit-btn" id="submit-comment">Publier le commentaire</button>
+            </div>
+            
+            <div class="comments-list" id="comments-list">
+                <!-- Les commentaires seront ajoutés ici dynamiquement -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Appel des scripts -->
+    <script src="config.js"></script>
+    <script src="comments.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
