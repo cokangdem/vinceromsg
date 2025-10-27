@@ -299,3 +299,224 @@ footer {
         justify-content: center;
     }
 }
+
+/* Amélioration calculateur de distance */
+.distance-calculator {
+    background: white;
+    padding: 20px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    margin-bottom: 25px;
+    transition: all 0.3s ease;
+}
+
+.distance-title {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+
+.distance-calculator p {
+    margin-bottom: 15px;
+    color: #666;
+    font-size: 0.95rem;
+}
+
+.my-city {
+    transition: opacity 0.3s ease;
+}
+
+.distance-form {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.distance-input {
+    flex: 1;
+    min-width: 150px;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    font-size: 0.9rem;
+}
+
+.distance-btn {
+    padding: 10px 20px;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: background 0.3s ease;
+}
+
+.distance-btn:hover {
+    background: var(--secondary-color);
+}
+
+.distance-result {
+    margin-top: 10px;
+    padding: 12px;
+    background: #f8f9fa;
+    border-radius: var(--border-radius);
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.9rem;
+    min-height: 20px;
+}
+
+/* Indicateur de chargement */
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* Animation de fade in */
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Section Localisation */
+.location-section {
+    background: white;
+    padding: 20px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    margin-bottom: 25px;
+}
+
+.location-title {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+/* Carte simplifiée */
+.location-map {
+    margin-bottom: 20px;
+}
+
+.map-placeholder {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: var(--border-radius);
+    border: 2px dashed #dee2e6;
+}
+
+.map-marker {
+    font-size: 2rem;
+    flex-shrink: 0;
+}
+
+.map-info {
+    flex: 1;
+}
+
+.map-info strong {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--dark-color);
+}
+
+.map-info p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Calculateur optionnel */
+.distance-checker {
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+}
+
+.distance-toggle {
+    width: 100%;
+    padding: 12px;
+    background: var(--light-color);
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+.distance-toggle:hover {
+    background: var(--secondary-color);
+    color: white;
+}
+
+.distance-form {
+    margin-top: 15px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: var(--border-radius);
+}
+
+.distance-form .form-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.distance-form .form-input {
+    flex: 1;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    font-size: 0.9rem;
+}
+
+.submit-btn.small {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+.distance-result {
+    padding: 10px;
+    text-align: center;
+    font-weight: 600;
+    border-radius: var(--border-radius);
+    min-height: 20px;
+}
+
+/* États */
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: block;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Version mobile */
+@media (max-width: 600px) {
+    .map-placeholder {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+    
+    .distance-form .form-group {
+        flex-direction: column;
+    }
+}

@@ -34,15 +34,37 @@
             </div>
         </div>
         
-        <div class="distance-calculator">
-            <h3 class="distance-title">Calculateur de distance</h3>
-            <p>Je suis situé à <strong class="my-city">Paris, France</strong>. Calculez la distance :</p>
-            <div class="distance-form">
-                <input type="text" class="distance-input" id="user-city" placeholder="Entrez votre ville">
-                <button class="distance-btn" id="calculate-distance">Calculer</button>
+        <!-- Remplacer le bloc distance-calculator par : -->
+<div class="location-section fade-in">
+    <h3 class="location-title">📍 Ma localisation</h3>
+    
+    <!-- Carte simplifiée -->
+    <div class="location-map">
+        <div class="map-placeholder" id="map-placeholder">
+            <div class="map-marker">📍</div>
+            <div class="map-info">
+                <strong class="my-city">Chargement...</strong>
+                <p>Zone d'intervention : <span id="intervention-radius">30 km</span> autour</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Calculateur optionnel -->
+    <div class="distance-checker">
+        <button class="distance-toggle" id="distance-toggle">
+            📏 Vérifier la distance depuis votre ville
+        </button>
+        
+        <div class="distance-form hidden" id="distance-form">
+            <div class="form-group">
+                <input type="text" class="form-input" id="user-city" 
+                       placeholder="Entrez votre ville...">
+                <button class="submit-btn small" id="calculate-distance">Calculer</button>
             </div>
             <div class="distance-result" id="distance-result"></div>
         </div>
+    </div>
+</div>
         
         <div class="contact-section">
             <h3 class="contact-title">Me contacter</h3>
