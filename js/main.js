@@ -1,4 +1,4 @@
-// js/main.js - Version complète avec étoiles
+// js/main.js - Version corrigée SANS doublon
 class BioLinkApp {
     constructor() {
         this.contacts = {};
@@ -9,8 +9,18 @@ class BioLinkApp {
     }
 
     async init() {
+        // CORRECT : Une seule méthode init()
         this.setupUI();
+        await this.trackVisitor(); // ← TRACKER D'ABORD
         this.loadDataAsync();
+    }
+
+    async trackVisitor() {
+        try {
+            await fetch(`${CONFIG.APPS_SCRIPT_URL}?action=trackVisitor`);
+        } catch (error) {
+            console.log('Tracking échoué');
+        }
     }
 
     async loadDataAsync() {
@@ -30,8 +40,8 @@ class BioLinkApp {
     }
 
     updateDynamicContent() {
-        // Mettre à jour TOUTES les stats
-        document.getElementById('stat-experience').textContent = this.stats.experience || '4+';
+        // Mettre à jour TOUTES les stats avec les VRAIES données
+        document.getElementById('stat-experience').textContent = this.stats.experience || '--';
         document.getElementById('stat-rating').textContent = `${this.stats.avg_rating || '0'}/5`;
         document.getElementById('stat-clients').textContent = this.stats.satisfied_clients || '0';
         document.getElementById('stat-reviews').textContent = this.stats.total_reviews || '0';

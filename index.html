@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vncrmsg - Masseur Professionnel</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
     <div class="container">
         <!-- HEADER -->
@@ -13,29 +15,31 @@
             <img src="img/avatar.jpg" alt="Vncrmsg" class="avatar">
             <h1 class="pseudo">Vncrmsg</h1>
             <h2 class="profession">Masseur Professionnel</h2>
-            <p class="bio">Spécialiste en massage bien-être et relaxation. Passionné par le bien-être depuis plusieurs années.</p>
+            <p class="bio">Spécialiste en massage bien-être et relaxation. Passionné par le bien-être depuis plusieurs
+                années.</p>
         </header>
-        
+
         <!-- STATISTIQUES -->
         <div class="stats-grid">
+            <!-- Les valeurs par défaut doivent être neutres -->
             <div class="stat-card">
-                <div class="stat-value" id="stat-experience">4+</div>
+                <div class="stat-value" id="stat-experience">--</div>
                 <div class="stat-label">Années d'expérience</div>
             </div>
             <div class="stat-card">
-                <div class="stat-value" id="stat-rating">4.8/5</div>
+                <div class="stat-value" id="stat-rating">--/5</div>
                 <div class="stat-label">Note moyenne</div>
             </div>
             <div class="stat-card">
-                <div class="stat-value" id="stat-clients">42</div>
+                <div class="stat-value" id="stat-clients">--</div>
                 <div class="stat-label">Clients satisfaits</div>
             </div>
             <div class="stat-card">
-                <div class="stat-value" id="stat-reviews">42</div>
+                <div class="stat-value" id="stat-reviews">--</div>
                 <div class="stat-label">Avis clients</div>
             </div>
         </div>
-        
+
         <!-- LOCALISATION -->
         <div class="location-section">
             <h3>📍 Ma localisation</h3>
@@ -47,7 +51,7 @@
                 </a>
             </div>
         </div>
-        
+
         <!-- CONTACT -->
         <div class="contact-section">
             <h3>Me contacter</h3>
@@ -60,11 +64,11 @@
                 </button>
             </div>
         </div>
-        
+
         <!-- AVIS CLIENTS -->
         <div class="comments-section">
             <h3>Avis clients (<span id="comments-count">0</span>)</h3>
-            
+
             <!-- FORMULAIRE AMÉLIORÉ -->
             <div class="comment-form">
                 <div class="form-group">
@@ -88,7 +92,7 @@
                 </div>
                 <button class="submit-btn" id="submit-comment">Publier l'avis</button>
             </div>
-            
+
             <!-- LISTE DES COMMENTAIRES -->
             <div class="comments-list" id="comments-list">
                 <!-- Les commentaires seront chargés ici -->
@@ -99,4 +103,5 @@
     <script src="js/config.js"></script>
     <script src="js/main.js"></script>
 </body>
+
 </html>
