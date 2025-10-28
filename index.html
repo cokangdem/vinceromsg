@@ -1,73 +1,62 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vncrmsg - Masseur Professionnel</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
     <div class="container">
+        <!-- HEADER STATIQUE -->
         <header>
-            <img src="https://via.placeholder.com/120" alt="Avatar" class="avatar">
-            <h1 class="pseudo">Chargement...</h1>
-            <h2 class="profession">Chargement...</h2>
-            <p class="bio">Chargement...</p>
+            <img src="img/avatar.jpg" alt="Vncrmsg" class="avatar">
+            <h1 class="pseudo">Vncrmsg</h1>
+            <h2 class="profession">Masseur Professionnel</h2>
+            <p class="bio">Je suis Vincero, praticien passionné par le bien-être, le développement personnel, le toucher
+                et la connexion humaine. Mes séances sont des moments de détente sensuelle et de complicité naturelle,
+                où la douceur, la confiance et la présence prennent toute leur place. J’accorde une attention
+                particulière à chaque rencontre, afin d’offrir une expérience intime, bienveillante et harmonieuse. J'ai
+                pour principe de toujours m'adapter à mon partenaire afin de lui apporter le plus de plaisir.</p>
         </header>
-        
+
+        <!-- STATS DYNAMIQUES -->
         <div class="stats-grid">
             <div class="stat-card">
-                <div class="stat-value">0</div>
+                <div class="stat-value" id="stat-experience">4+</div>
                 <div class="stat-label">Années d'expérience</div>
             </div>
             <div class="stat-card">
-                <div class="stat-value">0/5</div>
+                <div class="stat-value" id="stat-rating">0/5</div>
                 <div class="stat-label">Note moyenne</div>
             </div>
             <div class="stat-card">
-                <div class="stat-value">0</div>
+                <div class="stat-value" id="stat-clients">0</div>
                 <div class="stat-label">Clients satisfaits</div>
             </div>
             <div class="stat-card">
-                <div class="stat-value">0</div>
+                <div class="stat-value" id="stat-reviews">0</div>
                 <div class="stat-label">Avis clients</div>
             </div>
         </div>
-        
-        <!-- Remplacer le bloc distance-calculator par : -->
-<div class="location-section fade-in">
-    <h3 class="location-title">📍 Ma localisation</h3>
-    
-    <!-- Carte simplifiée -->
-    <div class="location-map">
-        <div class="map-placeholder" id="map-placeholder">
-            <div class="map-marker">📍</div>
-            <div class="map-info">
-                <strong class="my-city">Chargement...</strong>
-                <p>Zone d'intervention : <span id="intervention-radius">30 km</span> autour</p>
+
+        <!-- LOCALISATION STATIQUE -->
+        <div class="simple-location">
+            <h3>📍 Où me trouver ?</h3>
+            <div class="location-content">
+                <p><strong>Vienne (38)</strong></p>
+                <p class="location-note">Rhône-Alpes • À 30 minutes de Lyon</p>
+                <a href="https://maps.google.com/?q=Vienne+38200" target="_blank" class="maps-link">
+                    📍 Voir sur Google Maps
+                </a>
             </div>
         </div>
-    </div>
-    
-    <!-- Calculateur optionnel -->
-    <div class="distance-checker">
-        <button class="distance-toggle" id="distance-toggle">
-            📏 Vérifier la distance depuis votre ville
-        </button>
-        
-        <div class="distance-form hidden" id="distance-form">
-            <div class="form-group">
-                <input type="text" class="form-input" id="user-city" 
-                       placeholder="Entrez votre ville...">
-                <button class="submit-btn small" id="calculate-distance">Calculer</button>
-            </div>
-            <div class="distance-result" id="distance-result"></div>
-        </div>
-    </div>
-</div>
-        
+
+        <!-- CONTACT DYNAMIQUE -->
         <div class="contact-section">
-            <h3 class="contact-title">Me contacter</h3>
+            <h3>Me contacter</h3>
             <div class="contact-methods">
                 <button class="contact-btn" id="show-phone">
                     <span>📱</span> Voir mon numéro
@@ -77,10 +66,11 @@
                 </button>
             </div>
         </div>
-        
+
+        <!-- COMMENTAIRES DYNAMIQUES -->
         <div class="comments-section">
-            <h3 class="comments-title">Commentaires (<span id="comments-count">0</span>)</h3>
-            
+            <h3>Avis clients (<span id="comments-count">0</span>)</h3>
+
             <div class="comment-form">
                 <div class="form-group">
                     <input type="text" class="form-input" id="comment-name" placeholder="Votre nom">
@@ -100,15 +90,15 @@
                 </div>
                 <button class="submit-btn" id="submit-comment">Publier l'avis</button>
             </div>
-            
+
             <div class="comments-list" id="comments-list">
-                <!-- Les commentaires seront chargés ici -->
+                <!-- Commentaires chargés dynamiquement -->
             </div>
         </div>
     </div>
 
     <script src="js/config.js"></script>
-    <script src="js/comments.js"></script>
     <script src="js/main.js"></script>
 </body>
+
 </html>
