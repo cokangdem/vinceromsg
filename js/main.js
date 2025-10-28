@@ -1,23 +1,20 @@
-// js/main.js - Version corrigée et simplifiée
+// js/main.js - Version complète avec étoiles
 class BioLinkApp {
     constructor() {
         this.contacts = {};
         this.stats = {};
         this.comments = [];
+        this.currentRating = 0;
         this.init();
     }
 
     async init() {
-        // Chargement IMMÉDIAT de l'interface
         this.setupUI();
-        
-        // Chargement ASYNCHRONE des données
         this.loadDataAsync();
     }
 
     async loadDataAsync() {
         try {
-            // Un seul appel pour toutes les données
             const response = await fetch(`${CONFIG.APPS_SCRIPT_URL}?action=getAllData`);
             const data = await response.json();
             
@@ -33,14 +30,13 @@ class BioLinkApp {
     }
 
     updateDynamicContent() {
-        // Mettre à jour TOUTES les stats dynamiques
+        // Mettre à jour TOUTES les stats
         document.getElementById('stat-experience').textContent = this.stats.experience || '4+';
         document.getElementById('stat-rating').textContent = `${this.stats.avg_rating || '0'}/5`;
         document.getElementById('stat-clients').textContent = this.stats.satisfied_clients || '0';
         document.getElementById('stat-reviews').textContent = this.stats.total_reviews || '0';
         document.getElementById('comments-count').textContent = this.comments.length;
         
-        // Afficher les commentaires
         this.displayComments();
     }
 
@@ -84,9 +80,53 @@ class BioLinkApp {
             this.revealContact('email');
         });
 
+        // Système d'étoiles
+        this.setupStarRating();
+        
         // Commentaires
         document.getElementById('submit-comment').addEventListener('click', () => {
             this.submitComment();
+        });
+    }
+
+    setupStarRating() {
+        const stars = document.querySelectorAll('.star');
+        
+        stars.forEach(star => {
+            star.addEventListener('click', () => {
+                const rating = parseInt(star.dataset.rating);
+                this.setRating(rating);
+            });
+            
+            star.addEventListener('mouseover', () => {
+                const rating = parseInt(star.dataset.rating);
+                this.highlightStars(rating);
+            });
+        });
+        
+        // Reset au mouseout
+        document.querySelector('.stars').addEventListener('mouseout', () => {
+            this.highlightStars(this.currentRating);
+        });
+    }
+
+    setRating(rating) {
+        this.currentRating = rating;
+        document.getElementById('comment-rating').value = rating;
+        this.highlightStars(rating);
+    }
+
+    highlightStars(rating) {
+        const stars = document.querySelectorAll('.star');
+        stars.forEach(star => {
+            const starRating = parseInt(star.dataset.rating);
+            if (starRating <= rating) {
+                star.classList.add('active');
+                star.textContent = '★';
+            } else {
+                star.classList.remove('active');
+                star.textContent = '☆';
+            }
         });
     }
 
@@ -108,7 +148,7 @@ class BioLinkApp {
 
     async submitComment() {
         const name = document.getElementById('comment-name').value.trim();
-        const rating = document.getElementById('comment-rating').value;
+        const rating = this.currentRating;
         const text = document.getElementById('comment-text').value.trim();
         
         if (!name || !text) {
@@ -128,18 +168,22 @@ class BioLinkApp {
             // Recharger les données
             await this.loadDataAsync();
             
+            // Reset du formulaire
+            this.resetForm();
+            
         } catch (error) {
             alert('Erreur lors de l\'envoi. Veuillez réessayer.');
         }
+    }
 
-        // Reset
+    resetForm() {
         document.getElementById('comment-name').value = '';
-        document.getElementById('comment-rating').value = '';
         document.getElementById('comment-text').value = '';
+        this.setRating(0);
     }
 }
 
-// Lancement immédiat
+// Initialisation
 document.addEventListener('DOMContentLoaded', () => {
     new BioLinkApp();
 });

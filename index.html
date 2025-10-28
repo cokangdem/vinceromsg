@@ -1,60 +1,54 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vncrmsg - Masseur Professionnel</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
     <div class="container">
-        <!-- HEADER STATIQUE -->
+        <!-- HEADER -->
         <header>
             <img src="img/avatar.jpg" alt="Vncrmsg" class="avatar">
             <h1 class="pseudo">Vncrmsg</h1>
             <h2 class="profession">Masseur Professionnel</h2>
-            <p class="bio">Je suis Vincero, praticien passionné par le bien-être, le développement personnel, le toucher
-                et la connexion humaine. Mes séances sont des moments de détente sensuelle et de complicité naturelle,
-                où la douceur, la confiance et la présence prennent toute leur place. J’accorde une attention
-                particulière à chaque rencontre, afin d’offrir une expérience intime, bienveillante et harmonieuse. J'ai
-                pour principe de toujours m'adapter à mon partenaire afin de lui apporter le plus de plaisir.</p>
+            <p class="bio">Spécialiste en massage bien-être et relaxation. Passionné par le bien-être depuis plusieurs années.</p>
         </header>
-
-        <!-- STATS DYNAMIQUES -->
+        
+        <!-- STATISTIQUES -->
         <div class="stats-grid">
             <div class="stat-card">
                 <div class="stat-value" id="stat-experience">4+</div>
                 <div class="stat-label">Années d'expérience</div>
             </div>
             <div class="stat-card">
-                <div class="stat-value" id="stat-rating">0/5</div>
+                <div class="stat-value" id="stat-rating">4.8/5</div>
                 <div class="stat-label">Note moyenne</div>
             </div>
             <div class="stat-card">
-                <div class="stat-value" id="stat-clients">0</div>
+                <div class="stat-value" id="stat-clients">42</div>
                 <div class="stat-label">Clients satisfaits</div>
             </div>
             <div class="stat-card">
-                <div class="stat-value" id="stat-reviews">0</div>
+                <div class="stat-value" id="stat-reviews">42</div>
                 <div class="stat-label">Avis clients</div>
             </div>
         </div>
-
-        <!-- LOCALISATION STATIQUE -->
-        <div class="simple-location">
-            <h3>📍 Où me trouver ?</h3>
+        
+        <!-- LOCALISATION -->
+        <div class="location-section">
+            <h3>📍 Ma localisation</h3>
             <div class="location-content">
-                <p><strong>Vienne (38)</strong></p>
-                <p class="location-note">Rhône-Alpes • À 30 minutes de Lyon</p>
+                <p><strong id="current-city">Vienne (38)</strong></p>
+                <p>Rhône-Alpes • À 30 minutes de Lyon</p>
                 <a href="https://maps.google.com/?q=Vienne+38200" target="_blank" class="maps-link">
                     📍 Voir sur Google Maps
                 </a>
             </div>
         </div>
-
-        <!-- CONTACT DYNAMIQUE -->
+        
+        <!-- CONTACT -->
         <div class="contact-section">
             <h3>Me contacter</h3>
             <div class="contact-methods">
@@ -66,33 +60,38 @@
                 </button>
             </div>
         </div>
-
-        <!-- COMMENTAIRES DYNAMIQUES -->
+        
+        <!-- AVIS CLIENTS -->
         <div class="comments-section">
             <h3>Avis clients (<span id="comments-count">0</span>)</h3>
-
+            
+            <!-- FORMULAIRE AMÉLIORÉ -->
             <div class="comment-form">
                 <div class="form-group">
                     <input type="text" class="form-input" id="comment-name" placeholder="Votre nom">
                 </div>
                 <div class="form-group">
-                    <select class="form-input" id="comment-rating">
-                        <option value="">Note (optionnelle)</option>
-                        <option value="5">★★★★★ Excellent</option>
-                        <option value="4">★★★★ Très bon</option>
-                        <option value="3">★★★ Bon</option>
-                        <option value="2">★★ Moyen</option>
-                        <option value="1">★ Faible</option>
-                    </select>
+                    <div class="star-rating">
+                        <span>Note :</span>
+                        <div class="stars">
+                            <span class="star" data-rating="1">☆</span>
+                            <span class="star" data-rating="2">☆</span>
+                            <span class="star" data-rating="3">☆</span>
+                            <span class="star" data-rating="4">☆</span>
+                            <span class="star" data-rating="5">☆</span>
+                        </div>
+                        <input type="hidden" id="comment-rating" value="">
+                    </div>
                 </div>
                 <div class="form-group">
                     <textarea class="form-textarea" id="comment-text" placeholder="Votre avis..."></textarea>
                 </div>
                 <button class="submit-btn" id="submit-comment">Publier l'avis</button>
             </div>
-
+            
+            <!-- LISTE DES COMMENTAIRES -->
             <div class="comments-list" id="comments-list">
-                <!-- Commentaires chargés dynamiquement -->
+                <!-- Les commentaires seront chargés ici -->
             </div>
         </div>
     </div>
@@ -100,5 +99,4 @@
     <script src="js/config.js"></script>
     <script src="js/main.js"></script>
 </body>
-
 </html>

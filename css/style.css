@@ -1,3 +1,4 @@
+/* css/style.css */
 :root {
     --primary-color: #4a6fa5;
     --secondary-color: #6b8cbc;
@@ -5,7 +6,7 @@
     --light-color: #f8f9fa;
     --dark-color: #343a40;
     --border-radius: 12px;
-    --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 * {
@@ -27,6 +28,7 @@ body {
     margin: 0 auto;
 }
 
+/* HEADER */
 header {
     text-align: center;
     margin-bottom: 30px;
@@ -66,6 +68,7 @@ header {
     color: #666;
 }
 
+/* STATS */
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -98,6 +101,38 @@ header {
     color: #666;
 }
 
+/* LOCALISATION */
+.location-section {
+    background: white;
+    padding: 20px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.location-section h3 {
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+.maps-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #4285f4;
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    margin-top: 10px;
+    transition: background 0.3s ease;
+}
+
+.maps-link:hover {
+    background: #3367d6;
+}
+
+/* CONTACT */
 .contact-section {
     background: white;
     padding: 25px;
@@ -106,7 +141,7 @@ header {
     margin-bottom: 30px;
 }
 
-.contact-title {
+.contact-section h3 {
     font-size: 1.4rem;
     margin-bottom: 15px;
     color: var(--primary-color);
@@ -138,55 +173,7 @@ header {
     background: var(--secondary-color);
 }
 
-.distance-calculator {
-    background: white;
-    padding: 25px;
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-    margin-bottom: 30px;
-}
-
-.distance-title {
-    font-size: 1.4rem;
-    margin-bottom: 15px;
-    color: var(--primary-color);
-}
-
-.distance-form {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 15px;
-}
-
-.distance-input {
-    flex: 1;
-    min-width: 200px;
-    padding: 10px 15px;
-    border: 1px solid #ddd;
-    border-radius: 30px;
-    font-size: 1rem;
-}
-
-.distance-btn {
-    padding: 10px 20px;
-    background: var(--primary-color);
-    color: white;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    font-weight: 600;
-}
-
-.distance-result {
-    margin-top: 15px;
-    padding: 10px;
-    background: #f0f7ff;
-    border-radius: var(--border-radius);
-    text-align: center;
-    font-weight: 600;
-}
-
+/* COMMENTAIRES */
 .comments-section {
     background: white;
     padding: 25px;
@@ -200,16 +187,43 @@ header {
     color: var(--primary-color);
 }
 
+/* SYSTÈME D'ÉTOILES */
+.star-rating {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.stars {
+    display: flex;
+    gap: 5px;
+}
+
+.star {
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #ddd;
+    transition: color 0.2s ease;
+}
+
+.star:hover,
+.star.active {
+    color: #ffc107;
+}
+
+/* FORMULAIRE */
 .comment-form {
     margin-bottom: 30px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: var(--border-radius);
 }
 
 .form-group {
     margin-bottom: 15px;
 }
 
-.form-input,
-.form-textarea {
+.form-input, .form-textarea {
     width: 100%;
     padding: 12px 15px;
     border: 1px solid #ddd;
@@ -218,7 +232,7 @@ header {
 }
 
 .form-textarea {
-    min-height: 120px;
+    min-height: 100px;
     resize: vertical;
 }
 
@@ -237,6 +251,7 @@ header {
     background: var(--secondary-color);
 }
 
+/* LISTE COMMENTAIRES */
 .comments-list {
     max-height: 400px;
     overflow-y: auto;
@@ -276,280 +291,24 @@ header {
     color: #555;
 }
 
-footer {
-    text-align: center;
-    margin-top: 40px;
-    padding: 20px;
-    color: #888;
-    font-size: 0.9rem;
-}
-
+/* RESPONSIVE */
 @media (max-width: 600px) {
     .stats-grid {
         grid-template-columns: 1fr;
     }
-
+    
     .contact-methods {
         flex-direction: column;
         align-items: center;
     }
-
+    
     .contact-btn {
         width: 100%;
         justify-content: center;
     }
-}
-
-/* Amélioration calculateur de distance */
-.distance-calculator {
-    background: white;
-    padding: 20px;
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-    margin-bottom: 25px;
-    transition: all 0.3s ease;
-}
-
-.distance-title {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-    color: var(--primary-color);
-}
-
-.distance-calculator p {
-    margin-bottom: 15px;
-    color: #666;
-    font-size: 0.95rem;
-}
-
-.my-city {
-    transition: opacity 0.3s ease;
-}
-
-.distance-form {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-.distance-input {
-    flex: 1;
-    min-width: 150px;
-    padding: 10px 15px;
-    border: 1px solid #ddd;
-    border-radius: 25px;
-    font-size: 0.9rem;
-}
-
-.distance-btn {
-    padding: 10px 20px;
-    background: var(--primary-color);
-    color: white;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 0.9rem;
-    transition: background 0.3s ease;
-}
-
-.distance-btn:hover {
-    background: var(--secondary-color);
-}
-
-.distance-result {
-    margin-top: 10px;
-    padding: 12px;
-    background: #f8f9fa;
-    border-radius: var(--border-radius);
-    text-align: center;
-    font-weight: 600;
-    font-size: 0.9rem;
-    min-height: 20px;
-}
-
-/* Indicateur de chargement */
-.loading {
-    opacity: 0.6;
-    pointer-events: none;
-}
-
-/* Animation de fade in */
-.fade-in {
-    animation: fadeIn 0.5s ease-in;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Section Localisation */
-.location-section {
-    background: white;
-    padding: 15px;
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-    margin-bottom: 20px;
-    max-width: 400px; /* Largeur réduite */
-}
-
-.location-section h3 {
-    margin-bottom: 10px;
-    font-size: 1.1rem;
-}
-
-.location-content {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.city-input {
-    padding: 8px 12px;
-    border: 1px solid #ddd;
-    border-radius: 20px;
-    font-size: 0.9rem;
-}
-
-.calculate-btn {
-    padding: 8px 16px;
-    background: var(--primary-color);
-    color: white;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 0.9rem;
-}
-
-.calculate-btn:hover {
-    background: var(--secondary-color);
-}
-
-.location-title {
-    font-size: 1.2rem;
-    margin-bottom: 15px;
-    color: var(--primary-color);
-}
-
-/* Carte simplifiée */
-.location-map {
-    margin-bottom: 20px;
-}
-
-.map-placeholder {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    padding: 20px;
-    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-    border-radius: var(--border-radius);
-    border: 2px dashed #dee2e6;
-}
-
-.map-marker {
-    font-size: 2rem;
-    flex-shrink: 0;
-}
-
-.map-info {
-    flex: 1;
-}
-
-.map-info strong {
-    display: block;
-    margin-bottom: 5px;
-    color: var(--dark-color);
-}
-
-.map-info p {
-    margin: 0;
-    font-size: 0.9rem;
-    color: #666;
-}
-
-/* Calculateur optionnel */
-.distance-checker {
-    border-top: 1px solid #eee;
-    padding-top: 15px;
-}
-
-.distance-toggle {
-    width: 100%;
-    padding: 12px;
-    background: var(--light-color);
-    border: 1px solid #ddd;
-    border-radius: var(--border-radius);
-    cursor: pointer;
-    font-size: 0.9rem;
-    color: var(--primary-color);
-    transition: all 0.3s ease;
-}
-
-.distance-toggle:hover {
-    background: var(--secondary-color);
-    color: white;
-}
-
-.distance-form {
-    margin-top: 15px;
-    padding: 15px;
-    background: #f8f9fa;
-    border-radius: var(--border-radius);
-}
-
-.distance-form .form-group {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 10px;
-}
-
-.distance-form .form-input {
-    flex: 1;
-    padding: 10px 15px;
-    border: 1px solid #ddd;
-    border-radius: 25px;
-    font-size: 0.9rem;
-}
-
-.submit-btn.small {
-    padding: 10px 20px;
-    font-size: 0.9rem;
-    white-space: nowrap;
-}
-
-.distance-result {
-    margin-top: 8px;
-    padding: 8px;
-    text-align: center;
-    font-size: 0.9rem;
-    min-height: 20px;
-}
-
-/* États */
-.hidden {
-    display: none;
-}
-
-.visible {
-    display: block;
-    animation: slideDown 0.3s ease;
-}
-
-@keyframes slideDown {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Version mobile */
-@media (max-width: 600px) {
-    .map-placeholder {
-        flex-direction: column;
-        text-align: center;
-        gap: 10px;
-    }
     
-    .distance-form .form-group {
+    .star-rating {
         flex-direction: column;
+        align-items: flex-start;
     }
 }
